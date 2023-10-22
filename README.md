@@ -7,3 +7,7 @@
 ## Introduction
 
 Tweak things and make them what you want easily.
+
+## Category Indices
+
+- [PowerShell](powershell.md)
