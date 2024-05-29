@@ -32,7 +32,7 @@ Steps:
      if (!(Test-Path $historyFile)) {
        return $true
      }
-     $items = [System.Management.Automation.OrderedHashtable]::new()
+     $items = [ordered]@{}
      $sb = [System.Text.StringBuilder]::new()
      Get-Content $historyFile | ForEach-Object {
        if ($_.Length -eq 0) {
@@ -44,13 +44,13 @@ Steps:
          return
        }
        $item = $sb.ToString()
-       if ($items.ContainsKey($item)) {
+       if ($items.Contains($item)) {
          $items.Remove($item)
        }
        $items.Add($item, $null)
        [void]$sb.Clear()
      }
-     if ($items.ContainsKey($itemNew)) {
+     if ($items.Contains($itemNew)) {
        $items.Remove($itemNew)
      }
      $items.Keys | Out-File $historyFile -Force
