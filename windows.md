@@ -10,12 +10,10 @@
 
 ## Replace the default emoji font in Windows 11
 
-<details>
-
 > [!note]
 > This tweak has been tested on Windows 11 23H2 (22631.3737) with [**Segoe UI Emoji**][segoe-ui-emoji] font **v1.51** (the default system emoji font) and [**Twemoji font**][twemoji] in [**glyf**][glyf] [**COLR**][colr] **v0** format (can be [downloaded from GitHub releases][twemoji-glyf-colr0-ttf]). It should also work on higher versions.
 
-Steps:
+<details><summary>Steps:</summary>
 
 1. Make sure that you have properly installed [**Python**][python-downloads] 3.9 or higher.
 

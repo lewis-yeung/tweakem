@@ -10,12 +10,10 @@
 
 ## Keep each command item unique in PSReadLine history file
 
-<details>
-
 > [!note]
 > This tweak has been tested with **PowerShell v7.3.6** and **[PSReadLine][psreadline] v2.3.1-beta1**. It should also work with later versions but **NOT WITH OLDER ONES** (can even cause loss of command history).
 
-Steps:
+<details><summary>Steps:</summary>
 
 1. Run the following command to update PSReadLine in PowerShell. (**VERY IMPORTANT!**)
 
