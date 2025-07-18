@@ -15,4 +15,5 @@ Tweak things and make them what you want.
 
 ## Contents
 
+- [Windows](windows.md)
 - [PowerShell](powershell.md)
