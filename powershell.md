@@ -11,7 +11,7 @@
 ## Keep each command item unique in PSReadLine history file
 
 > [!note]
-> This tweak has been tested with **PowerShell v7.3.6** and **[PSReadLine][psreadline] v2.3.1-beta1**. It should also work with later versions but **NOT WITH OLDER ONES** (can even cause loss of command history).
+> This tweak has been tested with **PowerShell v7.3.6** and **[PSReadLine][psreadline] v2.3.1**. It should also work with later versions but **NOT WITH OLDER ONES** (can even cause loss of command history).
 
 <details><summary>Steps:</summary>
 
@@ -24,9 +24,9 @@
 2. Add the following code to your PowerShell [profile][powershell-profile]:
 
    ```powershell
+   # A hack to keep each item unique in the history file.
    Set-PSReadLineOption -AddToHistoryHandler {
-     # A hack to keep each item unique in the history file.
-     param([string]$itemNew)
+     param([string]$newItem)
      $historyFile = (Get-PSReadLineOption).HistorySavePath
      if (!(Test-Path $historyFile)) {
        return $true
@@ -39,7 +39,7 @@
        }
        [void]$sb.Append($_)
        if ($_.EndsWith('`')) {
-         [void]$sb.Append("`n")
+         [void]$sb.Append([Environment]::NewLine)
          return
        }
        $item = $sb.ToString()
@@ -49,10 +49,10 @@
        $items.Add($item, $null)
        [void]$sb.Clear()
      }
-     if ($items.Contains($itemNew)) {
-       $items.Remove($itemNew)
+     if ($items.Contains($newItem)) {
+       $items.Remove($newItem)
      }
-     $items.Keys | Out-File $historyFile -Force
+     [System.IO.File]::WriteAllLines($historyFile, $items.Keys)
      return $true
    }
    ```
