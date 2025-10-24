@@ -11,7 +11,7 @@
 ## Keep each command item unique in PSReadLine history file
 
 > [!note]
-> This tweak has been tested with **PowerShell v7.3.6** and **[PSReadLine][psreadline] v2.3.1**. It should also work with later versions but **NOT WITH OLDER ONES** (can even cause loss of command history).
+> This tweak has been tested in **PowerShell v7.3.6** / **Windows PowerShell 5.1**, with **[PSReadLine][psreadline] v2.3.1**. It should also work with later versions of PSReadLine but **NOT WITH OLDER ONES** (can even cause loss of command history).
 
 <details><summary>Steps:</summary>
 
@@ -33,7 +33,8 @@
      }
      $items = [ordered]@{}
      $sb = [System.Text.StringBuilder]::new()
-     Get-Content $historyFile | ForEach-Object {
+     $historyLines = [System.IO.File]::ReadAllLines($historyFile)
+     $historyLines | ForEach-Object {
        if ($_.Length -eq 0) {
          return
        }
